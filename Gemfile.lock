@@ -58,6 +58,9 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
+    activerecord-postgis-adapter (9.0.1)
+      activerecord (~> 7.1.0)
+      rgeo-activerecord (~> 7.0.0)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -117,7 +120,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     mutex_m (0.1.2)
-    net-imap (0.4.2)
+    net-imap (0.4.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -127,11 +130,7 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4-aarch64-linux)
-      racc (~> 1.4)
     nokogiri (1.15.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.4)
     propshaft (0.8.0)
@@ -143,7 +142,7 @@ GEM
       stringio
     puma (6.4.0)
       nio4r (~> 2.0)
-    racc (1.7.1)
+    racc (1.7.2)
     rack (3.0.8)
     rack-session (2.0.0)
       rack (>= 3.0.0)
@@ -186,6 +185,10 @@ GEM
       psych (>= 4.0.0)
     reline (0.3.9)
       io-console (~> 0.5)
+    rgeo (3.0.0)
+    rgeo-activerecord (7.0.1)
+      activerecord (>= 5.0)
+      rgeo (>= 1.0.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -227,11 +230,10 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  aarch64-linux
   arm64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   bootsnap
   debug
   jbuilder

@@ -1,0 +1,4 @@
+FROM postgres:16
+
+RUN apt-get update -yqq
+RUN apt-get install -yqq postgresql-16-postgis-3

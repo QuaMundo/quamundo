@@ -1,0 +1,13 @@
+services:
+  postgres:
+    container_name: "postgis_qm"
+    build:
+      context: .
+      dockerfile: Dockerfile-postgis
+    image: postgis:qm_dev
+    ports:
+      - "${POSTGRES_HOST_PORT}:${POSTGRES_PORT}"
+    env_file:
+      - .env
+    volumes:
+      - "./tmp/db/postgresql-data:/var/lib/postgresql/data"
