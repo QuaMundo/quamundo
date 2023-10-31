@@ -41,5 +41,11 @@ module Quamundo
 
     # Use SQL dump schema
     config.active_record.schema_format = :sql
+
+    # Additional args to pg_dump
+    # This should prevent errors when trying to re-create schema public on 
+    # db:load / db:setup
+    # See: https://github.com/rails/rails/issues/38695#issuecomment-763588402
+    ActiveRecord::Tasks::DatabaseTasks.structure_dump_flags = ['--clean', '--if-exists']
   end
 end
