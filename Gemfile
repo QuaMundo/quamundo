@@ -53,6 +53,9 @@ group :development, :test do
 
   # add rspec-rails test environment
   gem "rspec-rails", "~>6.0"
+
+  # Keep track of coding style with RuboCop
+  gem "rubocop-rails", require: false
 end
 
 group :development do
