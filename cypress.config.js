@@ -9,6 +9,10 @@ module.exports = defineConfig({
         /* ... */
       })
     },
+
+
+    // OPTIMIZE: Error supportFile missing when not set to false
+    supportFile: false,
   },
   screenshotsFolder: "tmp/cypress_screenshots",
   videosFolder: "tmp/cypress_videos",
