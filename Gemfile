@@ -49,6 +49,8 @@ gem 'bootsnap', require: false
 # Additional gems
 gem 'activerecord-postgis-adapter'
 
+gem 'tailwindcss-rails'
+
 group :development, :test do
   # add cypress for e2e testing
   gem 'cypress-rails'
