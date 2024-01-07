@@ -49,6 +49,10 @@ gem 'bootsnap', require: false
 # Additional gems
 gem 'activerecord-postgis-adapter'
 
+# Authentication via Devise
+# https://github.com/heartcombo/devise
+gem 'devise'
+
 gem 'tailwindcss-rails'
 
 group :development, :test do
