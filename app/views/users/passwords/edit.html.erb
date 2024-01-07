@@ -1,0 +1,39 @@
+<%# FIXME: Use i18n labels instead of text %> 
+<div class="mx-auto justify-center">
+  <h2 class="text-2xl font-bold">Change your password</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name),
+               html: { method: :put }) do |f| %>
+
+               <%= render "devise/shared/error_messages", resource: resource %>
+               <%= f.hidden_field :reset_password_token %>
+
+               <div class="field">
+                 <%# f.label :password, "New password" %><br />
+                 <% if @minimum_password_length %>
+                   <em class="text-sm text-gray-300">
+                     (<%= @minimum_password_length %> characters minimum)
+                   </em><br />
+                 <% end %>
+                 <%= f.password_field :password, autofocus: true,
+                   autocomplete: "new-password",
+                   class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 borfer-gray-200 focus:ring-0 focus:border-black],
+                   placeholder: 'Password' %>
+               </div>
+
+               <div class="field">
+                 <%# f.label :password_confirmation, "Confirm new password" %><br />
+                 <%= f.password_field :password_confirmation,
+                   autocomplete: "new-password",
+                   class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 borfer-gray-200 focus:ring-0 focus:border-black],
+                   placeholder: 'Confirm Password' %>
+               </div>
+
+               <div class="actions">
+                 <%= f.submit "Change my password",
+                     class: %Q[w-full rounded bg-blue-700 my-4 py-2 text-white] %>
+               </div>
+             <% end %>
+
+             <%= render "devise/shared/links" %>
+</div>

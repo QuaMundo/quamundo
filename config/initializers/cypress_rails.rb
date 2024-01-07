@@ -6,7 +6,7 @@ Rails.application.load_tasks unless defined?(Rake::Task)
 
 CypressRails.hooks.before_server_start do
   # Called once, before either the transaction or the server is started
-  Rake::Task['db:seed'].invoke
+  Rake::Task['db:seed:cypress'].invoke
 end
 
 CypressRails.hooks.after_transaction_start do
@@ -19,5 +19,5 @@ end
 
 CypressRails.hooks.before_server_stop do
   # Called once, at_exit
-  Rake::Task['db:test:prepare'].invoke
+  Rake::Task['db:reset'].invoke
 end

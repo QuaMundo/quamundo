@@ -1,5 +1,10 @@
 require:
   - rubocop-rails
+  - rubocop-factory_bot
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
 
 Style/Documentation:
   Enabled: false

@@ -1,0 +1,15 @@
+# quamundo custom settings
+production:
+  super_user_name: 'quamundo'
+  super_user_email: 'quamundo@example.tld'
+  super_user_password: 'QuaMund0'
+
+development:
+  super_user_name: 'quamundo'
+  super_user_email: 'quamundo@example.tld'
+  super_user_password: 'QuaMund0'
+
+test:
+  super_user_name: 'quamundo'
+  super_user_email: 'quamundo@example.tld'
+  super_user_password: 'QuaMund0'

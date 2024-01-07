@@ -49,6 +49,10 @@ gem 'bootsnap', require: false
 # Additional gems
 gem 'activerecord-postgis-adapter'
 
+# Authentication via Devise
+# https://github.com/heartcombo/devise
+gem 'devise'
+
 gem 'tailwindcss-rails'
 
 group :development, :test do
@@ -61,11 +65,19 @@ group :development, :test do
   # add factory_bot for creating test data
   gem 'factory_bot_rails'
 
+  # use pry for debugging
+  gem 'pry'
+
+  # controller testing
+  gem 'rails-controller-testing'
+
   # add rspec-rails test environment
   gem 'rspec-rails', '~>6.0'
 
   # Keep track of coding style with RuboCop
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do

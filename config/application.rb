@@ -50,5 +50,12 @@ module Quamundo
     # db:load / db:setup
     # See: https://github.com/rails/rails/issues/38695#issuecomment-763588402
     ActiveRecord::Tasks::DatabaseTasks.structure_dump_flags = ['--clean', '--if-exists']
+
+    # custom configuration (uses `config/quamundo.yml`)
+    config.quamundo = config_for(:quamundo) || {
+      super_user_name: 'quamundo',
+      super_user_email: 'mail@example.tld',
+      super_user_password: 'QuaMund0'
+    }
   end
 end
