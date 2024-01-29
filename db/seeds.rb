@@ -17,10 +17,10 @@
   seed_file = Rails.root.join('db', 'seeds', "#{seed}.rb")
   Rails.logger.debug '*** Loading seed data ***'
   if File.exist?(seed_file)
-    Rails.logger.debug "* Loading #{seed} seed data *"
+    Rails.logger.debug { "* Loading #{seed} seed data *" }
     require seed_file
   else
-    Rails.logger.debug "--- Seed for env #{seed} not found; skipping ---"
+    Rails.logger.debug { "--- Seed for env #{seed} not found; skipping ---" }
   end
   Rails.logger.debug '*** finished loading seed data ***'
 end

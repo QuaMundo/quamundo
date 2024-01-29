@@ -7,7 +7,8 @@ FactoryBot.define do
     password { '12345678' }
   end
 
-  factory :super_user, class: 'User' do
+  # FIXME: Differentiate between super_user and admin
+  factory :super_user, class: 'User', aliases: [:admin] do
     id { 0 }
     name { 'quamundo' }
     email { 'quamundo@example.tld' }

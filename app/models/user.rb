@@ -3,15 +3,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
 
-  # TODO: Truncate name (automatically)
-  # before_validation :truncate_name
+  before_validation :truncate_name
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   # TODO: Validate email
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
 
   def admin?
     # TODO: Provide admin flag or similar to have more than one admin
@@ -21,5 +19,9 @@ class User < ApplicationRecord
 
   def super_user?
     id&.zero?
+  end
+
+  def truncate_name
+    name&.slice!(15..)
   end
 end

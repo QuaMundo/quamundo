@@ -1,0 +1,10 @@
+inherit_from: ../.rubocop.yml
+
+inherit_gem:
+  action_policy: config/rubocop-rspec.yml
+
+RSpec/ExpectActual:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false

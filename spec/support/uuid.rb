@@ -23,10 +23,13 @@ RSpec.configure do |_|
 end
 
 RSpec.shared_examples 'having an uuid' do |obj|
-  let(:object) { create(obj) }
+  subject { create(obj) }
 
-  it 'should have a valid uuid attached' do
-    expect(object).to have_attribute(:qm_uuid)
-    expect(object&.qm_uuid).to be_an_uuid
+  it 'has an uuid attached' do
+    expect(subject).to have_attribute(:qm_uuid)
+  end
+
+  it 'has a valid uuid' do
+    expect(subject&.qm_uuid).to be_an_uuid
   end
 end

@@ -12,7 +12,7 @@ namespace :db do
       end
 
       seed_file = Rails.root.join('db/seeds/cypress.rb').to_s
-      Rails.logger.debug "Seeding #{seed_file} ..."
+      Rails.logger.debug { "Seeding #{seed_file} ..." }
       load(seed_file) if File.exist?(seed_file)
     end
   end

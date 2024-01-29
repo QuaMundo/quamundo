@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
-# require 'factory_bot_rails'
+# redundant check rails environment - should already be done in
+# ../../lib/tasks/cypress.rake
+raise <<END_OF_MESSAGE unless Rails.env.test?
+  This db seed may only be used in testing environment (cypress)
+END_OF_MESSAGE
 
-User.create!(name: 'quamundo', email: 'quamundo@example.tld', password: '12345678')
+require 'factory_bot_rails'
+
+FactoryBot.create(:super_user)
+FactoryBot.create(:user)

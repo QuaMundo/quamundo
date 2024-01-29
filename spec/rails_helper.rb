@@ -30,7 +30,9 @@ require 'support/factory_bot'
 # require custom stuff
 #
 
+require 'support/session'
 require 'support/uuid'
+require 'support/devise'
 
 #
 # end of requiring custom stuff

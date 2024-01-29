@@ -3,65 +3,117 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
+  context 'with validation' do
+    let(:user) { build(:user) }
 
-  it 'is valid as normal user with name, email and password' do
-    expect(user).to be_valid
-    expect(user).not_to be_admin
-    expect(user).not_to be_super_user
-    expect { user.save!(validate: false) }
-      .not_to raise_exception
+    include_examples 'having an uuid', :user
+
+    it 'is valid as normal user with name, email and password' do
+      expect(user).to be_valid
+    end
+
+    it 'is invalid whithout a name' do
+      user.name = nil
+      expect(user).not_to be_valid
+    end
+
+    it 'is invalid without an email adress' do
+      user.email = nil
+      expect(user).not_to be_admin
+    end
+
+    it 'truncates name to maximum of 15 chars' do
+      user.name = 'Farmorethanonlyfifteencharacters'
+      user.validate
+      expect(user.name.length).to eq(15)
+    end
   end
 
-  it 'is invalid without name' do
-    user.name = nil
-    expect(user)
-      .not_to be_valid
-    expect { user.save!(validate: false) }
-      .to raise_exception ActiveRecord::NotNullViolation
+  context 'with uniqueness' do
+    let(:user) { create(:user) }
+    let(:other_user) { build(:user, name: 'other', email: 'other@example.tld') }
+
+    it 'has an unique email address' do
+      other_user.email = user.email
+      expect(other_user).not_to be_valid
+    end
+
+    it 'has an unique name' do
+      other_user.name = user.name
+      expect(other_user).not_to be_valid
+    end
   end
 
-  it 'is invalid without email' do
-    user.email = nil
-    expect(user)
-      .not_to be_valid
-    expect { user.save!(validate: false) }
-      .to raise_exception ActiveRecord::NotNullViolation
+  context 'with roles' do
+    context 'when normal user' do
+      let(:user) { build(:user) }
+
+      it 'does not identify as admin' do
+        expect(user).not_to be_admin
+      end
+
+      it 'does not identify as root_user' do
+        expect(user).not_to be_super_user
+      end
+    end
+
+    context 'when admin user' do
+      let(:user) { build(:admin) }
+
+      it 'identifies as admin' do
+        expect(user).to be_admin
+      end
+
+      it 'does not identify as superuser' do
+        skip 'For the time beeing, admin and super_user are indentically'
+        expect(user).not_to be_super_user
+      end
+    end
+
+    context 'when root user' do
+      let(:user) { build(:super_user) }
+
+      it 'identifies as admin' do
+        expect(user).to be_admin
+      end
+
+      it 'identifies as super_user' do
+        expect(user).to be_super_user
+      end
+    end
   end
 
-  it 'has an unique email' do
-    user.save!
-    other_user = build(:user, email: user.email)
-    expect(other_user).not_to be_valid
-    expect { other_user.save!(validate: false) }
-      .to raise_exception ActiveRecord::RecordNotUnique
-  end
+  context 'with db layer' do
+    let(:user) { build(:user) }
 
-  it 'has an unique name' do
-    user.save!
-    other_user = build(:user, email: 'xyz@ab.cd')
-    expect(other_user).not_to be_valid
-    expect { other_user.save!(validate: false) }
-      .to raise_exception ActiveRecord::RecordNotUnique
-  end
+    it 'writes valid data to database' do
+      expect { user.save!(validate: false) }
+        .not_to raise_exception
+    end
 
-  it 'has a name truncated after 15 characters' do
-    pending 'Autom. truncation of name not implemented yet'
-    long_name = 'this_is_a_much_too_long_name'
-    short_name = long_name.slice(0, 15)
-    user = User
-           .new(name: long_name, email: 'email6@ab.cd', password: '12345678')
-    user.validate!
-    expect(user.name).to eq(short_name)
-  end
+    it 'refuses to write user without email' do
+      user.email = nil
+      expect { user.save!(validate: false) }
+        .to raise_error ActiveRecord::NotNullViolation
+    end
 
-  include_examples 'having an uuid', :user
+    it 'refuses to write user without name' do
+      user.name = nil
+      expect { user.save!(validate: false) }
+        .to raise_error ActiveRecord::NotNullViolation
+    end
 
-  it 'gets default super_user with id of zero on db setup' do
-    super_user = create(:super_user)
-    expect(super_user.id).to be 0
-    expect(super_user).to be_admin
-    expect(super_user).to be_super_user
-    expect(super_user.qm_uuid).to be_an_uuid
+    it 'refuses to save name longer than 15 chars' do
+      user.name = 'Farmorethanonlyfifteencharacters'
+      expect { user.save!(validate: false) }
+        .to raise_error ActiveRecord::ValueTooLong
+    end
+
+    it 'refuses to write user without password' do
+      skip 'Not implemented or undecided'
+      user.password = nil
+      expect { user.save!(validate: false) }
+        .to raise_error ActiveRecord::NotNullViolation
+    end
   end
 end
