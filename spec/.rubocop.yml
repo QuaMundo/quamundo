@@ -1,4 +1,4 @@
 inherit_from: ../.rubocop.yml
 
-RSpec/Rails/InferredSpecType:
+RSpecRails/InferredSpecType:
   Enabled: false
