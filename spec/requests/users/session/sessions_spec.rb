@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :request do
+  # FIXME: Maybe possible stubbed version?
   let(:user) { create(:user) }
 
   context 'with no user is logged in' do

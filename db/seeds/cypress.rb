@@ -9,4 +9,4 @@ END_OF_MESSAGE
 require 'factory_bot_rails'
 
 FactoryBot.create(:super_user)
-FactoryBot.create(:user)
+FactoryBot.create(:user, email: 'mail@example.tld', password: '12345678')
