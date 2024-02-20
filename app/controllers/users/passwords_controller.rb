@@ -2,6 +2,8 @@
 
 module Users
   class PasswordsController < Devise::PasswordsController
+    skip_before_action :authenticate_user!
+    skip_verify_authorized
     # GET /resource/password/new
     # def new
     #   super

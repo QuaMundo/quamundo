@@ -34,6 +34,10 @@ require 'support/session'
 require 'support/uuid'
 require 'support/devise'
 
+# ActionPolicy testing
+require 'action_policy/rspec'
+require 'action_policy/rspec/dsl'
+
 #
 # end of requiring custom stuff
 #

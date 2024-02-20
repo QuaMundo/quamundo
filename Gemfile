@@ -47,6 +47,9 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 # Additional gems
+# Use ActionPolicy for authorization
+gem 'action_policy'
+
 gem 'activerecord-postgis-adapter'
 
 # Authentication via Devise
