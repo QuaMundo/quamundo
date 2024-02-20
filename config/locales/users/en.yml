@@ -9,12 +9,8 @@ en:
 
     passwords:
       new:
-        email: 'Email'
         reset_password: 'Reset Password'
 
     sessions:
       new:
-        email: 'Email'
-        password: 'Password'
         remember_me: 'Remember me'
-        submit: 'Submit'

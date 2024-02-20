@@ -1,11 +1,40 @@
-<div class="container mx-auto justify-center">
-  <table>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to(t '.edit', edit_user_path(user)) %></td>
-      </tr>
-    <% end %>
-  </table>
+<div class="container mx-auto justify-center flex flex-col gap-y-2 sm:gap-y-4 sm:w-2/3">
+  <h1 class="font-semibold text-2xl"><%= t('.users') %></h1>
+  <% @users.each do |user| %>
+    <div class="flex flex-row">
+
+      <div class="basis-3/4 flex flex-row">
+        <div class="h-auto w-5 my-auto mr-2 justify-start hidden sm:block">
+          <svg data-slot="icon" aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+
+        <div class="grow flex flex-col sm:flex-row">
+          <div class="basis-2/5 grow sm:self-center">
+            <%= user.name %>
+            <% if user.admin? %>
+              <span class="text-xs text-orange-600 uppercase font-extralight">
+                admin
+              </span>
+            <% end %>
+          </div>
+
+          <div class="basis-3/5 grow text-sm sm:text-base font-light sm:self-center">
+            <%= user.email %>
+          </div>
+        </div>
+      </div>
+
+      <div class="basis-1/4 justify-end gap-x-4 flex flex-col text-sm">
+        <%= content_for :context_menu, flush: true do %>
+          <%= mail_to user.email, t('email'), subject: '[QuaMundo]' %>
+        <% end %>
+
+        <%= render partial: 'shared/menus/context_menu',
+          locals: { object: user } %>
+      </div>
+
+    </div>
+  <% end %>
 </div>

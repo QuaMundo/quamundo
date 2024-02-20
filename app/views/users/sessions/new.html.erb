@@ -7,7 +7,7 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email",
       class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200
                 focus:ring-0 focus:border-black],
-      placeholder: t('.email') %>
+      placeholder: t('email') %>
     </div>
 
     <div class="field">
@@ -15,7 +15,7 @@
       <%= f.password_field :password,
       class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200
                 focus:ring-0 focus:border-black],
-      placeholder: t('.password') %>
+      placeholder: t('password') %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -28,7 +28,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit t('.submit'),
+      <%= f.submit t('submit'),
           class: %Q[w-full rounded bg-blue-700 my-4 py-2 text-white] %>
     </div>
   <% end %>

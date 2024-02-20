@@ -1,0 +1,9 @@
+en:
+  shared:
+    menus:
+      user_menu:
+        edit_profile: 'Edit profile'
+
+      admin_menu:
+        users: 'User index'
+        new_user: 'New user'

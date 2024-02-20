@@ -1,0 +1,9 @@
+<%= link_to t('edit'),
+  edit_polymorphic_path(object),
+  class: '' %>
+
+<%= link_to t('delete'), polymorphic_path(object),
+  class: '',
+  method: :delete,
+  data: { turbo_method: :delete,
+          turbo_confirm: t('confirm_delete') } %>

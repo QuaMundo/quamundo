@@ -1,2 +1,9 @@
 de:
-  hello: "Hallo Welt"
+  confirm_delete: 'Soll dieses Objekt unwiederbringlich gelöscht werden?'
+  delete: 'löschen'
+  edit: 'bearbeiten'
+  email: 'Email'
+  login: 'anmelden'
+  logout: 'abmelden'
+  password: 'Passwort'
+  submit: 'OK'
