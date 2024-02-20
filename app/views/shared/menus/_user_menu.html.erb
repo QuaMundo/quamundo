@@ -1,0 +1,23 @@
+<menu id="user_menu" class="flex flex-col gap-y-4 border-b-2 border-gray-300 pb-4">
+
+  <% if current_user.present? %>
+
+    <%= link_to t('.edit_profile'),
+      edit_user_path(current_user),
+      class: %Q[] %>
+
+    <%= link_to t('logout'),
+      destroy_user_session_path,
+      class: %Q[],
+      method: :delete,
+      data: { turbo_method: :delete } %>
+
+  <% else %>
+
+    <%= link_to t('login'),
+      new_user_session_path,
+      class: %Q[] %>
+
+  <% end %>
+
+</menu>

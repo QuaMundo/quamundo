@@ -7,6 +7,7 @@ RSpec.describe 'layouts/application.html.erb', type: :view do
     render
     expect(rendered).to have_rendered(partial: 'shared/_header')
   end
+
   it 'renders partial footer' do
     render
     expect(rendered).to have_rendered(partial: 'shared/_footer')

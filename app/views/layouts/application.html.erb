@@ -1,29 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html class>
   <head>
     <title>Quamundo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font",
-                            "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload",
-                               defer: true %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <head>
-      <%= render partial: 'shared/header' %>
-    </head>
+  <body class="container mx-auto bg-white min-h-screen flex flex-col max-w-6xl">
+    <%= render partial: "shared/header" %>
 
-    <main class="container mx-auto mt-28 px-5 flex">
+    <%= render partial: "shared/flash" unless flash.empty? %>
+
+    <main class="mt-2 p-2 flex min-h-full">
       <%= yield %>
     </main>
 
-    <footer>
-      <%= render partial: 'shared/footer' %>
-    </footer>
+    <%= render partial: "shared/footer" %>
   </body>
 </html>

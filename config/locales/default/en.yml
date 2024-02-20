@@ -1,2 +1,9 @@
 en:
-  hello: "Hello world"
+  confirm_delete: 'Should this item irretrievably be deleted?'
+  delete: 'delete'
+  edit: 'edit'
+  email: 'email'
+  login: 'login'
+  logout: 'logout'
+  password: 'password'
+  submit: 'submit'

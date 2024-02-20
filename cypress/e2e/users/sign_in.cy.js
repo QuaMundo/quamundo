@@ -4,21 +4,33 @@ describe('sign_in path', () => {
   })
 
   it('refuses to login unknown user', () => {
-    cy.login('unknown@user.tld', '12345678')
+    cy.visit('/users/sign_in')
+
+    cy.getById('user_email').type('unknown@example.tld')
+    cy.getById('user_password').type('xxxxxxxxxx')
+    cy.getSubmit().click()
 
     cy.location('pathname').should('equal', '/users/sign_in')
     // FIXME: check flash msg
   })
 
   it('lets an existing user log in', () => {
-    cy.loginUser()
+    cy.visit('/users/sign_in')
+
+    cy.getById('user_email').type('quamundo@example.tld')
+    cy.getById('user_password').type('12345678')
+    cy.getSubmit().click()
 
     cy.location('pathname').should('equal', '/')
     // FIXME: check flash msg
   })
 
   it('refuses to log in user with invalid password', () => {
-    cy.login('quamundo@example.tld', 'false_password')
+    cy.visit('/users/sign_in')
+
+    cy.getById('user_email').type('quamundo@example.tld')
+    cy.getById('user_password').type('xxxxxxxxxx')
+    cy.getSubmit().click()
 
     cy.location('pathname').should('equal', '/users/sign_in')
     // FIXME: check flash msg

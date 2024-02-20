@@ -1,0 +1,26 @@
+<%= form_with(model: @user, class: 'contents',
+              builder: QuamundoFormBuilder) do |form| %>
+
+  <%# FIXME: render errrors %>
+
+  <div class="my-3 relative">
+    <%= form.text_field_with_label(:email, type: :email) %>
+  </div>
+
+  <div class="my-3 relative">
+    <%= form.text_field_with_label(:name) %>
+  </div>
+
+  <div class="my-3 relative">
+    <%= form.text_field_with_label(:password, type: :password) %>
+  </div>
+
+  <div class="my-3 relative">
+    <%= form.text_field_with_label(:password_confirmation, type: :password) %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white
+    inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

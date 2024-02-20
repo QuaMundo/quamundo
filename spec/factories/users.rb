@@ -5,6 +5,7 @@ FactoryBot.define do
     sequence(:name, 1) { |n| "user_#{n}" }
     email { "#{name}@email.tld" }
     password { '12345678' }
+    password_confirmation { '12345678' }
   end
 
   # FIXME: Differentiate between super_user and admin
@@ -13,5 +14,6 @@ FactoryBot.define do
     name { 'quamundo' }
     email { 'quamundo@example.tld' }
     password { '12345678' }
+    password_confirmation { '12345678' }
   end
 end

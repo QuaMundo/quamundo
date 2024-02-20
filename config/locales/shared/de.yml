@@ -1,0 +1,13 @@
+de:
+  shared:
+    flash:
+      notice: 'Info'
+      alert: 'Warnung'
+
+    menus:
+      user_menu:
+        edit_profile: 'Profil bearbeiten'
+
+      admin_menu:
+        users: 'Benutzerliste'
+        new_user: 'Neuer Benutzer'
