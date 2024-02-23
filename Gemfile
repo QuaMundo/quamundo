@@ -55,6 +55,10 @@ gem 'activerecord-postgis-adapter'
 # Authentication via Devise
 # https://github.com/heartcombo/devise
 gem 'devise'
+gem 'devise-i18n'
+
+# i18n
+gem 'rails-i18n', '~> 7.0.0'
 
 gem 'tailwindcss-rails'
 

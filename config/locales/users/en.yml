@@ -1,0 +1,20 @@
+en:
+  users:
+    not_allowed: 'No permission for this action: %{details}'
+    create_success: 'User %{user} successfully created'
+    create_failed: 'User %{user} could not be created'
+    destroy_success: 'User %{user} successfully removed'
+    update_success: 'User %{user} successfully updated'
+    update_failed: 'Failed to update user %{user}'
+
+    passwords:
+      new:
+        email: 'Email'
+        reset_password: 'Reset Password'
+
+    sessions:
+      new:
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Remember me'
+        submit: 'Submit'

@@ -13,8 +13,7 @@ describe 'POST /users', type: :request do
 
     it 'shows flash alert' do
       post(users_path, params:)
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_empty
+      expect(flash.alert).to match(I18n.t('devise.failure.unauthenticated'))
     end
   end
 
@@ -28,8 +27,9 @@ describe 'POST /users', type: :request do
 
     it 'shows flash alert' do
       post(users_path, params:)
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_empty
+      # FIXME: Helper for regexp
+      expect(flash.alert)
+        .to match(/^#{I18n.t('.users.not_allowed').slice!(..10)}/)
     end
   end
 
@@ -43,8 +43,8 @@ describe 'POST /users', type: :request do
 
     it 'shows flash notice' do
       post(users_path, params:)
-      # FIXME: Check flash message
-      expect(flash.notice).not_to be_empty
+      expect(flash.notice)
+        .to match(I18n.t('users.create_success', user: params[:user][:name]))
     end
   end
 end
