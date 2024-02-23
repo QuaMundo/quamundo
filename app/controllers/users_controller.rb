@@ -21,13 +21,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html do
-          # FIXME: Check flash message
-          flash.notice = 'success'
+          flash.notice = t '.create_success', user: @user.name
           redirect_to users_path
         end
       else
-        # FIXME: Check flash message
-        flash.alert = 'failed'
+        flash.alert = t '.create_failed', user: @user.name
         render :new
       end
     end
@@ -36,15 +34,13 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        # FIXME: Add flash
         format.html do
-          flash.notice = 'success'
+          flash.notice = t '.update_success', user: @user.name
           redirect_to root_path
         end
       else
-        # FIXME: Add flash
         format.html do
-          flash.alert = 'failed'
+          flash.alert = t '.update_failed', user: @user.name
           render :edit
         end
       end
@@ -54,9 +50,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      # FIXME: Add flash
       format.html do
-        flash.notice = 'success'
+        flash.notice = t '.destroy_success', user: @user.name
         redirect_to redirect_after_destroy
       end
     end

@@ -20,8 +20,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
     it 'shows flash alert' do
       patch(user_path(user), params:)
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_empty
+      expect(flash.alert)
+        .to match(I18n.t('devise.failure.unauthenticated'))
     end
   end
 
@@ -36,8 +36,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash notice' do
         patch(user_path(user), params:)
-        # FIXME: Check flash message
-        expect(flash.notice).not_to be_empty
+        expect(flash.notice)
+          .to match(I18n.t('users.update_success', user: user.name))
       end
     end
 
@@ -51,8 +51,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash alert' do
         patch(user_path(user), params:)
-        # FIXME: Check flash message
-        expect(flash.alert).not_to be_empty
+        expect(flash.alert)
+          .to match(I18n.t('users.update_failed', user: user.name))
       end
     end
 
@@ -66,8 +66,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash alert' do
         patch(user_path(other_user), params:)
-        # FIXME: Check flash message
-        expect(flash.alert).not_to be_empty
+        expect(flash.alert)
+          .to match(/^#{I18n.t('users.not_allowed').slice!(..10)}/)
       end
     end
   end
@@ -83,12 +83,12 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash notice' do
         patch(user_path(user), params:)
-        # FIXME: Check flash message
-        expect(flash.notice).not_to be_empty
+        expect(flash.notice)
+          .to match(I18n.t('users.update_success', user: user.name))
       end
     end
 
-    context 'when failing to update owen attributes' do
+    context 'when failing to update own attributes' do
       before { allow(user).to receive(:update).and_return(false) }
 
       it 'rerenders edit form' do
@@ -115,8 +115,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash notice' do
         patch(user_path(other_user), params:)
-        # FIXME: Check flash message
-        expect(flash.notice).not_to be_empty
+        expect(flash.notice)
+          .to match(I18n.t('users.update_success', user: other_user.name))
       end
     end
 
@@ -133,8 +133,8 @@ RSpec.describe 'PATCH /user/<id>', type: :request do
 
       it 'shows flash alert' do
         patch(user_path(other_user), params:)
-        # FIXME: Check flash message
-        expect(flash.alert).not_to be_empty
+        expect(flash.alert)
+          .to match(I18n.t('users.update_failed', user: other_user.name))
       end
     end
   end

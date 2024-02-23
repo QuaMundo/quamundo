@@ -17,8 +17,8 @@ RSpec.describe 'GET /user/<id>/edit', type: :request do
 
     it 'shows falsh alert' do
       get edit_user_path(user)
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_nil
+      expect(flash.alert)
+        .to match(I18n.t('devise.failure.unauthenticated'))
     end
   end
 
@@ -47,8 +47,8 @@ RSpec.describe 'GET /user/<id>/edit', type: :request do
 
       it 'shows flash alert' do
         get edit_user_path(other_user)
-        # FIXME: Check flash message
-        expect(flash.alert).not_to be_empty
+        expect(flash.alert)
+          .to match(/^#{I18n.t('users.not_allowed').slice!(..10)}/)
       end
     end
   end

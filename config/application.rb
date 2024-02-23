@@ -51,7 +51,12 @@ module Quamundo
     # See: https://github.com/rails/rails/issues/38695#issuecomment-763588402
     ActiveRecord::Tasks::DatabaseTasks.structure_dump_flags = ['--clean', '--if-exists']
 
+    # configure i18n (use de and en)
+    # https://github.com/svenfuchs/rails-i18n?tab=readme-ov-file#available-locales
+    config.i18n.available_locales = %i[en de]
+
     # custom configuration (uses `config/quamundo.yml`)
+    # FIXME: Make error proof if file not readable
     config.quamundo = config_for(:quamundo) || {
       super_user_name: 'quamundo',
       super_user_email: 'mail@example.tld',

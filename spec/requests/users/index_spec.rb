@@ -11,8 +11,8 @@ RSpec.describe 'GET /users', type: :request do
 
     it 'shows flash alert' do
       get users_path
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_nil
+      expect(flash.alert)
+        .to match(I18n.t('devise.failure.unauthenticated'))
     end
   end
 
@@ -26,8 +26,8 @@ RSpec.describe 'GET /users', type: :request do
 
     it 'shows flash alert' do
       get users_path
-      # FIXME: Check flash message
-      expect(flash.alert).not_to be_nil
+      expect(flash.alert)
+        .to match(/^#{I18n.t('users.not_allowed').slice!(..10)}/)
     end
   end
 

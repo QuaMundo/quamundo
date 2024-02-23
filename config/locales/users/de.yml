@@ -1,0 +1,20 @@
+de:
+  users:
+    not_allowed: 'Keine Berechtigung für diese Aktion: %{details}'
+    create_success: 'Benutzer %{user} wurde erfolgreich erstellt'
+    create_failed: 'Benutzer %{user} konnte nicht angelegt werden'
+    destroy_success: 'Benutzer %{user} wurde aus dem System gelöscht'
+    update_success: 'Änderungen an Benutzer %{user} erfolgreich übernommen'
+    update_failed: 'Änderungen an Benutzer %{user} konnten nich übernommen werden'
+
+    passwords:
+      new:
+        email: 'Email'
+        reset_password: 'Passwort zurücksetzen'
+
+    sessions:
+      new:
+        email: 'Email'
+        password: 'Passwort'
+        remember_me: 'Erinnern'
+        submit: 'OK'
