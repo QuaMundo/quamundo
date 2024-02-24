@@ -8,6 +8,10 @@ class User < ApplicationRecord
   before_validation :truncate_name
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
+  validates :password,
+            confirmation: true,
+            length: { minimum: 8 }
+  validates :password_confirmation, presence: true
   # TODO: Validate email
   validates :email, presence: true, uniqueness: true
 

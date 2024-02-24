@@ -1,48 +1,81 @@
-<nav id="main-menu"
-     class="m-0 p-2 relative"
-     data-controller="menu"
-     data-action="click@window->menu#hide keydown.esc->menu#hide"
-     data-menu-hidden-class="hidden">
+<nav
+  id="main-menu"
+  class="p-2 relative"
+  data-controller="menu"
+  data-action="
+    click@window->menu#hide
+    menu:hide@window->menu#hide
+    keydown.esc->menu#hide
+  "
+  data-menu-hidden-class="hidden"
+>
 
-     <%# Menu Button %>
-     <div>
-       <button type="button"
-               class="border rounded border-gray-50 hover:bg-gray-50"
-               data-action="click->menu#toggle"
-               id="menu-button"
-               aria-expanded="true"
-               aria-haspopup="true">
-               <svg xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6">
-                 <path stroke-linecap="round"
-                       stroke-linejoin="round"
-                       d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-               </svg>
-       </button>
-     </div>
+  <%# Menu Button %>
+  <div>
+    <button
+      type="button"
+      class="border rounded border-gray-50 hover:bg-gray-50"
+      data-action="click->menu#toggle"
+      id="menu-button"
+      aria-expanded="true"
+      aria-haspopup="true"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        />
+      </svg>
+    </button>
+  </div>
 
-     <%# Menu Entries %>
-     <div class="hidden absolute left-0 top-0 bg-white min-w-fit max-w-full
-                 border border-gray-200 p-4"
-          role="menu"
-          id="menu-entries"
-          data-menu-target="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-          tabindex="-1">
+  <%# Menu Entries %>
+  <div
+    class="
+      hidden absolute left-0 top-0 bg-white min-w-fit max-w-full border
+      border-gray-200 p-4 z-50 flex flex-col sm:w-1/3 w-2/3
+      min-h-screen font-semibold
+    "
+    role="menu"
+    id="menu-entries"
+    data-menu-target="menu"
+    aria-orientation="vertical"
+    aria-labelledby="menu-button"
+    tabindex="-1"
+  >
 
-       <div>
-         <%# add context depending main menu entries from other views %>
-         <%= yield :main_menu %>
+    <div class="mb-4 flex flex-row justify-end">
+      <button class="text-base">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+        </svg>
 
-         <%# default menu entries %>
-         <%= render partial: 'shared/menus/admin_menu' %>
+      </button>
+    </div>
 
-         <%= render partial: 'shared/menus/user_menu' %>
-       </div>
-     </div>
+    <div class="flex flex-col gap-y-4">
+      <%# add context depending main menu entries from other views %>
+      <%= yield :main_menu %>
+
+      <%# default menu entries %>
+      <%= render partial: "shared/menus/admin_menu" if current_user&.admin? %>
+
+      <%= render partial: "shared/menus/user_menu" %>
+    </div>
+  </div>
 </nav>

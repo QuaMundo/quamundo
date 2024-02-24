@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update destroy]
 
   def index
-    @users = User.all
+    @users = User.order(:name)
     authorize! @users
   end
 
@@ -25,8 +25,8 @@ class UsersController < ApplicationController
           redirect_to users_path
         end
       else
-        flash.alert = t '.create_failed', user: @user.name
-        render :new
+        flash.now[:alert] = t '.create_failed', user: @user.name
+        render :new, status: :unprocessable_entity
       end
     end
   end
@@ -40,8 +40,8 @@ class UsersController < ApplicationController
         end
       else
         format.html do
-          flash.alert = t '.update_failed', user: @user.name
-          render :edit
+          flash.now[:alert] = t '.update_failed', user: @user.name
+          render :edit, status: :unprocessable_entity
         end
       end
     end
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user)
-          .permit(:name, :email, :password, :password_confiramtion)
+          .permit(:name, :email, :password, :password_confirmation)
   end
 
   def redirect_after_destroy

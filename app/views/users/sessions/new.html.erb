@@ -1,36 +1,32 @@
 <div class="mx-auto justify-center">    
   <h2 class="text-2xl font-bold">Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%# f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",
-      class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200
-                focus:ring-0 focus:border-black],
-      placeholder: t('email') %>
+  <%= form_for resource, as: resource_name, builder: QuamundoFormBuilder,
+    url: session_path(resource_name) do |f| %>
+
+    <div class="field my-3 relative">
+      <%= f.text_field_with_label(:email, type: :email) %>
     </div>
 
-    <div class="field">
-      <%# f.label :password %><br />
-      <%= f.password_field :password,
-      class: %Q[mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200
-                focus:ring-0 focus:border-black],
-      placeholder: t('password') %>
+    <div class="field my-3 relative">
+      <%= f.text_field_with_label(:password, type: :password) %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field mt-5">
+      <div class="field my-3 mt-5 relative">
         <%= f.check_box :remember_me,
-          class: %Q[border-gray-300 border-2 text-black focus:border-gray-300
-                    focus:ring-black] %>
-        <%= f.label t('.remember_me') %>
+          placeholder: :remember_me,
+          class: %Q[border-gray-300 border-2 text-black
+                    focus:border-gray-300 focus:ring-black] %>
+        <%= f.label :remember_me %>
       </div>
     <% end %>
 
-    <div class="actions">
+    <div class="actions my-3 relative">
       <%= f.submit t('submit'),
-          class: %Q[w-full rounded bg-blue-700 my-4 py-2 text-white] %>
+        class: %Q[w-full rounded bg-blue-700 my-4 py-2 text-white] %>
     </div>
+
   <% end %>
 
   <%= render "devise/shared/links" %>

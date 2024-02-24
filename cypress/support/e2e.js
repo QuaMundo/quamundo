@@ -38,6 +38,17 @@ Cypress.Commands.addAll({
 
   loginRoot() {
     cy.login('quamundo@example.tld', '12345678')
+  },
+
+  // add an user
+  addUser(email, name, password) {
+    cy.visit('/users/new')
+
+    cy.getById('user_email').type(email)
+    cy.getById('user_name').type(name)
+    cy.getById('user_password').type(password)
+    cy.getById('user_password_confirmation').type(password)
+    cy.getSubmit().click()
   }
 })
 

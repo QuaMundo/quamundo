@@ -5,7 +5,7 @@ de:
     create_failed: 'Benutzer %{user} konnte nicht angelegt werden'
     destroy_success: 'Benutzer %{user} wurde aus dem System gelöscht'
     update_success: 'Änderungen an Benutzer %{user} erfolgreich übernommen'
-    update_failed: 'Änderungen an Benutzer %{user} konnten nich übernommen werden'
+    update_failed: 'Änderungen an Benutzer %{user} konnten nicht übernommen werden'
 
     passwords:
       new:
@@ -14,3 +14,12 @@ de:
     sessions:
       new:
         remember_me: 'Erinnern'
+
+    edit:
+      user: 'Benutzer bearbeiten'
+
+    index:
+      users: 'Benutzerliste'
+
+    new:
+      user: 'Neuer Benutzer'

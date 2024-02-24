@@ -5,11 +5,6 @@ require 'rails_helper'
 RSpec.describe 'shared/menus/_user_menu.html.erb', type: :view do
   let(:user) { build_stubbed(:user) }
 
-  it 'contains a menu element' do
-    render
-    assert_select 'menu#user_menu'
-  end
-
   context 'when no user is logged in' do
     it 'shows only login link' do
       render

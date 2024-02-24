@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     # or with i18n support
     # ex.result.reasons.full_messages #=> ["You do not have access to the stage"]
 
+    # FIXME: How to show the details???
     flash.alert = t '.not_allowed', details: ex.result.reasons.full_messages
     redirect_to root_path
   end

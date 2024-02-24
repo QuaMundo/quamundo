@@ -6,6 +6,7 @@ export default class extends Controller {
 
   toggle(event) {
     event.stopImmediatePropagation()
+    this.dispatch('hide')
     this.menuTarget.classList.toggle('hidden')
   }
 

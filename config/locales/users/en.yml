@@ -14,3 +14,12 @@ en:
     sessions:
       new:
         remember_me: 'Remember me'
+
+    edit:
+      user: 'Edit User'
+
+    index:
+      users: 'User Index'
+
+    new:
+      user: 'Neu User'

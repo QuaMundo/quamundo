@@ -1,5 +1,9 @@
 en:
   shared:
+    flash:
+      notice: 'Notice'
+      alert: 'Alert'
+
     menus:
       user_menu:
         edit_profile: 'Edit profile'
