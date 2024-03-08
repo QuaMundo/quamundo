@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: "postgis_qm"
+    container_name: "${CONTAINER_NAME:-postgis_qm}"
     build:
       context: .
       dockerfile: Dockerfile-postgis
