@@ -34,6 +34,10 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+
+        # don't log out user after profile update
+        bypass_sign_in(@user) unless current_user != @user
+
         format.html do
           flash.notice = t '.update_success', user: @user.name
           redirect_to root_path
