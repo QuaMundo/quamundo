@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 // Turbo.session.drive = false
+
+import "trix"
+import "@rails/actiontext"

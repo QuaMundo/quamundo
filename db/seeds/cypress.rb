@@ -8,6 +8,18 @@ END_OF_MESSAGE
 
 require 'factory_bot_rails'
 
+# ensure super user with id: 0 is present
 FactoryBot.create(:super_user)
-FactoryBot.create(:user, email: 'mail@example.tld', password: '12345678')
-# FactoryBot.create(:user, id: 1, email: 'mail@example.tld', password: '12345678')
+
+# ensure std user with id: 1 is present
+if (user = User.find_by id: 1)
+  user.update!(email: 'mail@example.tld',
+               name: 'user',
+               password: '12345678',
+               password_confirmation: '12345678')
+else
+  FactoryBot.create(:user,
+                    name: 'user',
+                    email: 'mail@example.tld',
+                    password: '12345678')
+end

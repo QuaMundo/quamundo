@@ -21,6 +21,7 @@ describe('add, edit and delete an user', () => {
       // FIXME: check flash msg
     })
 
+    // FIXME: Try without creating user beforehand
     it('can edit an user', () => {
       cy.addUser('abc@fg.de', 'abc', '12345678')
 
@@ -46,6 +47,7 @@ describe('add, edit and delete an user', () => {
       // FIXME: check flash msg
     })
 
+    // FIXME: Try without creating user beforehand
     it('can delete an user', () => {
       cy.addUser('abc@fg.de', 'abc', '12345678')
 

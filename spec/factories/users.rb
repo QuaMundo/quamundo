@@ -15,5 +15,7 @@ FactoryBot.define do
     email { 'quamundo@example.tld' }
     password { '12345678' }
     password_confirmation { '12345678' }
+
+    initialize_with { User.find_or_create_by(id: 0) }
   end
 end
